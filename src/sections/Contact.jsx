@@ -30,8 +30,8 @@ const Contact = () => {
     try {
       console.log("From submitted:", formData);
       await emailjs.send(
-        "service_79b0nyj",
-        "template_17us8im",
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
         {
           from_name: formData.name,
           to_name: "Muhammed Yasin",
@@ -39,7 +39,7 @@ const Contact = () => {
           to_email: "muhammedyasindev@gmail.com",
           message: formData.message,
         },
-        "pn-Bw_mS1_QQdofuV"
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       );
       setIsLoading(false);
       setFormData({ name: "", email: "", message: "" });
@@ -51,7 +51,10 @@ const Contact = () => {
     }
   };
   return (
-    <section id="contact" className="relative flex items-center mt-3 c-space sectionCD R -spacing">
+    <section
+      id="contact"
+      className="relative flex items-center mt-3 c-space sectionCD R -spacing"
+    >
       <Particles
         className="absolute inset-0 -z-50"
         quantity={100}
